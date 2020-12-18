@@ -1,0 +1,134 @@
+<type>(<scope>): <summary>
+
+<Describe the motivation behind this change - explain WHY you are making this change. Wrap all lines
+at 100 characters.>
+
+Fixes #<issue number>
+
+# ────────────────────────────────────────── 100 chars ────────────────────────────────────────────┤
+
+
+# Commit Message Format
+# =============================
+#
+# The following is an excerpt of the specification with the most commonly needed info.
+#
+# Each commit message consists of a *header*, a *body*, and a *footer*.
+#
+# <header>
+# <BLANK LINE>
+# <body>
+# <BLANK LINE>
+# <footer>
+#
+# The header is mandatory.
+#
+# The body is mandatory for all commits except for those of scope "docs". When the body is required
+# it must be at least 20 characters long.
+#
+# The footer is optional.
+#
+# Any line of the commit message cannot be longer than 100 characters.
+#
+#
+# Commit Message Header
+# ---------------------
+#
+# <type>(<scope>): <short summary>
+#   │       │             │
+#   │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
+#   │       │
+#   │       └─⫸ Commit Scope: common|core|elements|changelog|migrations|...
+#   │
+#   └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|style|test
+#                     release|merge
+#
+#                     build: Changes that affect the build system or external dependencies
+#                     ci: Changes to our CI configuration files and scripts
+#                     docs: Documentation only changes
+#                     feat: A new feature
+#                     fix: A bug fix
+#                     perf: A code change that improves performance
+#                     refactor: A code change that neither fixes a bug nor adds a feature
+#                     style: Changes that do not affect the meaning of the code
+#                     test: Adding missing tests or correcting existing tests
+#
+#
+# Commit Message Body
+# ---------------------
+#
+# Just as in the summary, use the imperative, present tense: "fix" not "fixed" nor "fixes".
+#
+# Explain the motivation for the change in the commit message body. This commit message should
+# explain WHY you are making the change. You can include a comparison of the previous behavior with
+# the new behavior in order to illustrate the impact of the change.
+#
+#
+# Commit Message Footer
+# ---------------------
+#
+# The footer can contain information about breaking changes and is also the place to reference
+# GitHub issues, Jira tickets, and other PRs that this commit closes or is related to.
+#
+# ```
+# BREAKING CHANGE: <breaking change summary>
+# <BLANK LINE>
+# <breaking change description + migration instructions>
+# <BLANK LINE>
+# <BLANK LINE>
+# Fixes #<issue number>
+# ```
+#
+# Breaking Change section should start with the phrase "BREAKING CHANGE: " followed by a summary of
+# the breaking change, a blank line, and a detailed description of the breaking change that also
+# includes migration instructions.
+#
+
+
+# Example Commit Messages
+# =======================
+
+
+# ─── Example: Simple refactor ────────────────────────────────────────────────────────────────────┤
+# refactor(core): rename someLongMethodNameWichDidExtraThings to someMethod
+#
+# Improve code readability. The original name no longer matches how the function is used.
+# ─────────────────────────────────────────────────────────────────────────────────────────────────┤
+
+
+# ─── Example: Simple docs change ─────────────────────────────────────────────────────────────────┤
+# docs: clarify the service limitation in guide-to-the-galaxy.md guide
+#
+# Fixes #1234
+# ─────────────────────────────────────────────────────────────────────────────────────────────────┤
+
+
+# ─── Example: A bug fix ──────────────────────────────────────────────────────────────────────────┤
+# fix(core): ensure lockfile is removed when `analyze` fails
+#
+# Previously an error thrown in the `analyze` would cause the core process to exit immediately
+# without removing the lockfile, and potentially before the unlocker process had been successfully
+# spawned resulting in the lockfile being orphaned and left behind.
+#
+# Now we catch these errors and remove the lockfile as needed.
+# ─────────────────────────────────────────────────────────────────────────────────────────────────┤
+
+
+# ─── Example: Breaking change ────────────────────────────────────────────────────────────────────┤
+# feat(core): simplify package by dropping feature1 and feature2
+#
+# feature1 and feature2 distributions are no longer needed and have been deprecated.
+#
+# https://url.to/guide/deprecations#feature1-and-feature2-code-formats
+#
+# This commit modifies the core to no longer distribute these two formats.
+#
+# More cleanup to follow: #1235
+#
+# BREAKING CHANGE: package is no longer distributed
+#
+# The core will automatically downlevel the code if differential loading is enabled in the project,
+# so no action is required from users.
+#
+# Fixes #1234
+# ─────────────────────────────────────────────────────────────────────────────────────────────────┤
