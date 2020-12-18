@@ -3,12 +3,14 @@
 ## Installation
 
 ```bash
+git clone --recurse-submodules git@github.com:geerteltink/dotfiles.git .dotfiles
+```
+```bash
 ./install
-chsh -s $(which zsh)
 ```
 
-## System update
+## Set ZSH as default shell
 
 ```bash
-sudo ./update
+chsh -s $(which zsh)
 ```
