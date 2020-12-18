@@ -15,7 +15,10 @@ sudo apt -y dist-upgrade
 [ $(which unzip) ] || sudo apt -y install unzip
 [ $(which wget) ] || sudo apt -y install wget
 
-# find the installers and run them iteratively
+# Self update
+git pull
+
+# Find the installers and run them iteratively
 find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
 
 sudo apt -y autoremove
