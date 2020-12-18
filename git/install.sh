@@ -16,16 +16,17 @@ ln -nsf $PWD/git/gitmessage ~/.gitmessage
 
 if [ ! $(git config --global user.email) ]
 then
-    echo ' - What is your github author name?'
-    read GIT_AUTHOREMAIL </dev/tty
-    git config --global user.email "$GIT_AUTHOREMAIL"
+    echo ' - What is your git email?'
+    read GIT_USER_EMAIL </dev/tty
+    git config --global user.email "$GIT_USER_EMAIL"
 fi
 
 if [ ! $(git config --global user.signingkey) ]
 then
-    echo ' - What is your github signing key?'
-    read GIT_SIGNINGKEY </dev/tty
-    git config --global user.signingkey "$GIT_SIGNINGKEY"
+    gpg --list-keys --keyid-format LONG $(git config --global user.email)
+    echo ' - What is your git signing key?'
+    read GIT_SIGNING_KEY </dev/tty
+    git config --global user.signingkey "$GIT_SIGNING_KEY"
     git config --global commit.gpgsign true
 fi
 
