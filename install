@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+sudo apt update
+sudo apt -y upgrade
+sudo apt -y dist-upgrade
+
+[ ! $(dpkg -s apt-transport-https >/dev/null 2>&1;) ] || sudo apt -y install apt-transport-https
+[ ! $(dpkg -s ca-certificates >/dev/null 2>&1;) ] || sudo apt -y install ca-certificates
+[ ! $(dpkg -s software-properties-common >/dev/null 2>&1;) ] || sudo apt -y install software-properties-common
+
+[ $(which curl) ] || sudo apt -y install curl
+[ $(which make) ] || sudo apt -y install make
+[ $(which screenfetch) ] || sudo apt -y install screenfetch
+[ $(which unzip) ] || sudo apt -y install unzip
+[ $(which wget) ] || sudo apt -y install wget
+
+# find the installers and run them iteratively
+find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
+
+sudo apt -y autoremove
+sudo apt -y clean
+
+echo "Job's done!"
