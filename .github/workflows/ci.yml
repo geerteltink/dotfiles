@@ -24,11 +24,14 @@ jobs:
         if: runner.os == 'Linux'
         run: sudo apt-get update; sudo apt-get install zsh
 
-      - name: Test installer
-        run: sh ./install --skip-update
-
-      - name: Check syntax
+      - name: Check zsh scripts syntax
         run: |
-          for file in ./zsh/zshcr ./*/*.zsh; do
+          for file in ./zsh/zshrc ./*/*.zsh; do
+            zsh -n "$file" || return 1
+          done
+
+      - name: Check install scripts syntax
+        run: |
+          for file in ./*/*.sh; do
             zsh -n "$file" || return 1
           done
