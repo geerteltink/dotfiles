@@ -1,8 +1,16 @@
 #!/bin/sh
 set -e
 
-sudo apt update
-sudo apt -y upgrade
+SKIP_UPDATE=0
+if [ "$1" = "--skip-update" ]; then
+  SKIP_UPDATE=1
+fi
+
+if [ $SKIP_UPDATE = 0 ]; then
+  sudo apt update
+  sudo apt -y upgrade
+  git pull
+fi
 
 [ ! $(dpkg -s apt-transport-https >/dev/null 2>&1;) ] || sudo apt -y install apt-transport-https
 [ ! $(dpkg -s ca-certificates >/dev/null 2>&1;) ] || sudo apt -y install ca-certificates
@@ -14,13 +22,12 @@ sudo apt -y upgrade
 [ $(which unzip) ] || sudo apt -y install unzip
 [ $(which wget) ] || sudo apt -y install wget
 
-# Self update
-git pull
-
 # Find the installers and run them iteratively
 find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
 
-sudo apt -y autoremove
-sudo apt -y clean
+if [ $SKIP_UPDATE = 0 ]; then
+  sudo apt -y autoremove
+  sudo apt -y clean
+fi
 
 echo "Job's done!"

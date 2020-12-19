@@ -1,0 +1,37 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Set up git repository
+        uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+
+      - name: Install zsh
+        if: runner.os == 'Linux'
+        run: sudo apt-get update; sudo apt-get install zsh
+
+      - name: Check zsh scripts syntax
+        run: |
+          for file in ./zsh/zshrc ./*/*.zsh; do
+            zsh -n "$file" || return 1
+          done
+
+      - name: Check install scripts syntax
+        run: |
+          for file in ./install ./*/*.sh; do
+            zsh -n "$file" || return 1
+          done
