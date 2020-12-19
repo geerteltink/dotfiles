@@ -22,7 +22,7 @@ jobs:
         run: sudo apt-get update; sudo apt-get install zsh
 
       - name: Test installer
-        run: sh ./install
+        run: sh ./install --skip-update
 
       - name: Check syntax
         run: |
