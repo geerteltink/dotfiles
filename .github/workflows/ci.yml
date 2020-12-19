@@ -32,6 +32,6 @@ jobs:
 
       - name: Check install scripts syntax
         run: |
-          for file in ./*/*.sh; do
+          for file in ./install ./*/*.sh; do
             zsh -n "$file" || return 1
           done
