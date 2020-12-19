@@ -16,6 +16,7 @@ alias chown='chown --preserve-root'
 
 alias dud='du -ch -d 1 | sort -hr'
 alias df='df -Th'
+alias pw='openssl rand -base64 64'
 
 alias update='sudo -- sh -c "apt update && apt -y upgrade && apt -y autoremove && apt -y clean"'
 alias reload='source ~/.zshrc'
