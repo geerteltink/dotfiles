@@ -23,6 +23,14 @@ zsh will be installed with the powerlevel10k theme. When starting your terminal 
 
 When running `./install`, it will self update, update the powerlevel10k submodule and even update the system.
 
+## Get a better font
+
+Fonts look weird? No problem! Cascadia Code has a PL (Powerline) Glyph version! Go get it at [https://github.com/microsoft/cascadia-code/releases](https://github.com/microsoft/cascadia-code/releases) and change the fontFace in your terminal settings.
+
+```json
+"fontFace":  "Cascadia Code PL"
+```
+
 ## Components
 
 Each subfolder is a component, except for `./bin`. `./bin` wil be added to your path.
