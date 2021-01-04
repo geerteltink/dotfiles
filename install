@@ -9,7 +9,7 @@ fi
 if [ $SKIP_UPDATE = 0 ]; then
   sudo apt update
   sudo apt -y upgrade
-  git pull
+  git pull --rebase --autostash
 fi
 
 [ ! $(dpkg -s apt-transport-https >/dev/null 2>&1;) ] || sudo apt -y install apt-transport-https
