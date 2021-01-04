@@ -8,7 +8,7 @@ then
     git submodule update --init --recursive
 fi
 
-git submodule update --remote
+git submodule update --recursive
 
 ln -nsf $PWD/zsh/zshrc ~/.zshrc
 
