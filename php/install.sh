@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 if [ ! -f /etc/apt/sources.list.d/ondrej*.list ]; then
@@ -16,7 +16,6 @@ if [ ! $(which composer) ]; then
 fi
 
 sudo composer self-update
-composer global require ergebnis/composer-normalize
 composer global update
 
 exit 0
