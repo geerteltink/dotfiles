@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -Eueo pipefail
 
 [ $(which zsh) ] || sudo apt -y install zsh
 

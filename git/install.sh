@@ -1,15 +1,19 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -Eueo pipefail
 
 if [ ! -f /etc/apt/sources.list.d/git-core*.list ]
 then
     sudo add-apt-repository -yu ppa:git-core/ppa
 fi
 
-if [ ! $(which git) ]
-then
-    sudo apt -y install git git-extras
-fi
+PACKAGES=(
+  git
+  git-extras
+)
+
+for pkg in "${PACKAGES[@]}"; do
+  [ ! $(dpkg -s $pkg >/dev/null 2>&1;) ] || sudo apt -y install $pkg
+done
 
 ln -nsf $PWD/git/gitignore ~/.gitignore
 ln -nsf $PWD/git/gitmessage ~/.gitmessage

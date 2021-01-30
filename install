@@ -1,8 +1,8 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -Eueo pipefail
 
 SKIP_UPDATE=0
-if [ "$1" = "--skip-update" ]; then
+if [ $# -ge 1 ] && [ "$1" = "--skip-update" ]; then
   SKIP_UPDATE=1
 fi
 
@@ -12,15 +12,20 @@ if [ $SKIP_UPDATE = 0 ]; then
   git pull --rebase --autostash
 fi
 
-[ ! $(dpkg -s apt-transport-https >/dev/null 2>&1;) ] || sudo apt -y install apt-transport-https
-[ ! $(dpkg -s ca-certificates >/dev/null 2>&1;) ] || sudo apt -y install ca-certificates
-[ ! $(dpkg -s software-properties-common >/dev/null 2>&1;) ] || sudo apt -y install software-properties-common
+PACKAGES=(
+  apt-transport-https
+  ca-certificates
+  software-properties-common
+  make
+  screenfetch
+  curl
+  wget
+  unzip
+)
 
-[ $(which curl) ] || sudo apt -y install curl
-[ $(which make) ] || sudo apt -y install make
-[ $(which screenfetch) ] || sudo apt -y install screenfetch
-[ $(which unzip) ] || sudo apt -y install unzip
-[ $(which wget) ] || sudo apt -y install wget
+for pkg in "${PACKAGES[@]}"; do
+  [ ! $(dpkg -s $pkg >/dev/null 2>&1;) ] || sudo apt -y install $pkg
+done
 
 # Find the installers and run them iteratively
 find . -name install.sh | while read installer ; do sh -c "${installer}" ; done

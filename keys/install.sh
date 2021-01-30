@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -Eueo pipefail
 
 #
 # Import gpg keys with extension `.pgp.key`

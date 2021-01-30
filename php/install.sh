@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -Eueo pipefail
 
 if [ ! -f /etc/apt/sources.list.d/ondrej*.list ]; then
     sudo add-apt-repository -yu ppa:ondrej/php
