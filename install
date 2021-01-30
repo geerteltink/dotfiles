@@ -1,16 +1,91 @@
 #!/usr/bin/env bash
 set -Eueo pipefail
 
+# =======================================================================
+# Helpers & setting some variables
+# =======================================================================
+
+DOTFILES_DIR="$HOME/.dotfiles"
+
+tput sgr0
+RED=$(tput setaf 1)
+ORANGE=$(tput setaf 3)
+GREEN=$(tput setaf 2)
+PURPLE=$(tput setaf 5)
+CYAN=$(tput setaf 4)
+BLUE=$(tput setaf 6)
+WHITE=$(tput setaf 7)
+BOLD=$(tput bold)
+RESET=$(tput sgr0)
+
+cat <<EOF
+$RED
+                           _       _    __ _ _
+                          | |     | |  / _(_) |
+                        __| | ___ | |_| |_ _| | ___  ___
+                       / _. |/ _ \| __|  _| | |/ _ \/ __|
+                      | (_| | (_) | |_| | | | |  __/\__ \ $()
+                     (_)__,_|\___/ \__|_| |_|_|\___||___/
+$RESET
+EOF
+
+if [ -d "$DOTFILES_DIR/.git" ]; then
+cat <<EOF
+$RED
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         $(git --git-dir "$DOTFILES_DIR/.git" --work-tree "$DOTFILES_DIR" log -n 1 --pretty=format:'commit:  %h')
+         $(git --git-dir "$DOTFILES_DIR/.git" --work-tree "$DOTFILES_DIR" log -n 1 --pretty=format:'date:    %ad' --date=short)
+         $(git --git-dir "$DOTFILES_DIR/.git" --work-tree "$DOTFILES_DIR" log -n 1 --pretty=format:'author:  %an')
+         $(git --git-dir "$DOTFILES_DIR/.git" --work-tree "$DOTFILES_DIR" log -n 1 --pretty=format:'message: %s')
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+$RESET
+EOF
+fi
+
+log() {
+  local LABEL="[$1]"
+  local COLOR="$2"
+  shift
+  shift
+  local MSG=("$@")
+  for M in "${MSG[@]}"; do
+    printf "${COLOR}${LABEL} $M${RESET}\n"
+  done
+}
+
+log_error() {
+  log "FAIL" "$RED" "$@"
+  exit 1
+}
+
+log_info() {
+  log "INFO" "$BLUE" "$@"
+}
+
+log_success() {
+  log "OK" "$GREEN" "$@"
+}
+
+# =======================================================================
+# Update system
+# =======================================================================
+
 SKIP_UPDATE=0
 if [ $# -ge 1 ] && [ "$1" = "--skip-update" ]; then
   SKIP_UPDATE=1
 fi
 
 if [ $SKIP_UPDATE = 0 ]; then
+  log_info "Updating system..."
   sudo apt update
   sudo apt -y upgrade
+  log_info "Updating dotfiles..."
   git pull --rebase --autostash
 fi
+
+# =======================================================================
+# Package installation
+# =======================================================================
 
 PACKAGES=(
   apt-transport-https
@@ -24,15 +99,30 @@ PACKAGES=(
 )
 
 for pkg in "${PACKAGES[@]}"; do
-  [ ! $(dpkg -s $pkg >/dev/null 2>&1;) ] || sudo apt -y install $pkg
+  if [ $(dpkg-query -W -f='${Status}' $pkg 2>/dev/null | grep -c "ok installed") -eq 0 ];
+  then
+    log_info "Installing ${pkg}..."
+    sudo apt -y install $pkg
+  fi
 done
 
-# Find the installers and run them iteratively
-find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
+# =======================================================================
+# Install components
+# =======================================================================
+
+find . -name install.sh | while read installer ; do
+  log_info "Installing ${installer}..."
+  sh -c "${installer}" ;
+done
+
+# =======================================================================
+# Cleanup system
+# =======================================================================
 
 if [ $SKIP_UPDATE = 0 ]; then
+  log_info "Cleaning up system..."
   sudo apt -y autoremove
   sudo apt -y clean
 fi
 
-echo "Job's done!"
+log_success "Job's done!"
