@@ -16,6 +16,5 @@ if [ ! $(which composer) ]; then
 fi
 
 sudo composer self-update
-composer global update
 
 exit 0
