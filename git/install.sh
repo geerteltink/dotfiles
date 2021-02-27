@@ -44,6 +44,7 @@ git config --global commit.template "~/.gitmessage"
 git config --global format.commitMessageColumns 100
 git config --global push.default "simple"
 git config --global pull.rebase true
+git config --global rebase.autoStash true
 git config --global alias.aliases "config --get-regexp '^alias\\.'"
 git config --global alias.st "status --short --branch"
 git config --global alias.df "diff --ignore-space-at-eol --ignore-space-change --ignore-all-space --ignore-blank-lines"
