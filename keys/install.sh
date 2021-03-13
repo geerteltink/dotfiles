@@ -14,8 +14,6 @@ done
 # Import ssh keys with extension `.rsa.key`
 #
 [ -d ~/.ssh ] || mkdir ~/.ssh
-sudo chmod 700 -R ~/.ssh
-sudo chmod 600 ~/.ssh/*
 for FILE in keys/*.rsa.key; do
     [ -f "$FILE" ] || continue
     FILENAME=$(basename $FILE)
@@ -55,3 +53,6 @@ if ! grep -Fxq "IdentityFile ~/.ssh/default.rsa.key" /etc/ssh/ssh_config
 then
     echo "IdentityFile ~/.ssh/default.rsa.key" | sudo tee -a /etc/ssh/ssh_config
 fi
+
+sudo chmod 700 -R ~/.ssh
+sudo chmod 600 ~/.ssh/*
