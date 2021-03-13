@@ -8,8 +8,7 @@ This is mainly used inside WSL2, but can be used in any ubuntu/debian operating 
 
 ```bash
 # install .dotfiles
-git clone --recurse-submodules git@github.com:geerteltink/dotfiles.
-git ~/.dotfiles
+git clone --recurse-submodules git@github.com:geerteltink/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install
 
