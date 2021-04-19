@@ -3,7 +3,7 @@ set -ex
 
 if [ ! -f /etc/apt/sources.list.d/node*.list ]
 then
-    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 fi
 
 PACKAGES=(
