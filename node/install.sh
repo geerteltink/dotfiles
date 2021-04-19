@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -Eueo pipefail
+set -ex
 
 if [ ! -f /etc/apt/sources.list.d/node*.list ]
 then

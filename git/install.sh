@@ -16,7 +16,6 @@ for pkg in "${PACKAGES[@]}"; do
 done
 
 ln -nsf $PWD/git/gitignore ~/.gitignore
-ln -nsf $PWD/git/gitmessage ~/.gitmessage
 
 if [ ! $(git config --global user.email) ]
 then
@@ -40,7 +39,6 @@ git config --global core.eol "lf"
 git config --global core.excludesfile "~/.gitignore"
 git config --global core.fscache true
 git config --global init.defaultBranch "main"
-git config --global commit.template "~/.gitmessage"
 git config --global format.commitMessageColumns 100
 git config --global push.default "simple"
 git config --global pull.rebase true
