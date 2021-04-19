@@ -40,6 +40,7 @@ git config --global core.excludesfile "~/.gitignore"
 git config --global core.fscache true
 git config --global init.defaultBranch "main"
 git config --global format.commitMessageColumns 100
+git config --global fetch.prune true
 git config --global push.default "simple"
 git config --global pull.rebase true
 git config --global rebase.autoStash true
