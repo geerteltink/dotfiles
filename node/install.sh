@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ex
+set -Eueo pipefail
 
 NODECMD=$(which node)
 if [ $NODECMD != "" ]
