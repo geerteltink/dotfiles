@@ -7,7 +7,7 @@ fi
 
 if [ ! $(which php) ]
 then
-    sudo apt -y install php8.0-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis}
+    sudo apt -y install php8.0-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis,sqlite3}
 fi
 
 if [ ! $(which composer) ]; then
