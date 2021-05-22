@@ -50,6 +50,7 @@ git config --global alias.df "diff --ignore-space-at-eol --ignore-space-change -
 git config --global alias.last-tag "describe --abbrev=0 --tags"
 git config --global alias.l "log --no-merges --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cI) %C(bold blue)<%an>%Creset'"
 git config --global alias.lg "log --pretty=format:'%C(yellow)%h %C(green)%ad%Cred%d %Creset%s%Cblue [%cn]' --decorate --date=short --graph"
+git config --global alias.yolo '!git commit -m "$(curl -s whatthecommit.com/index.txt)"'
 
 exit 0
 
