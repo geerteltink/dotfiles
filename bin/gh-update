@@ -1,0 +1,10 @@
+#!/bin/bash
+set -Eueo pipefail
+
+composer config platform.php 7.4
+
+composer update
+composer check
+
+composer config --unset platform
+composer update --lock --no-scripts --ignore-platform-reqs

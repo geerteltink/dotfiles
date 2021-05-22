@@ -1,0 +1,28 @@
+#!/bin/bash
+set -xEueo pipefail
+
+git switch -c feat/coding-standard-2.2.0 || git switch feat/coding-standard-2.2.0
+
+composer config platform.php 7.4
+
+[ -f CHANGELOG.md ] && rm CHANGELOG.md
+[ -f .docheader ] && rm .docheader
+sed -e 's/"@license-check",//' composer.json > composer.new
+mv composer.new composer.json
+composer config --unset scripts.license-check
+composer config --unset scripts.check.'@license-check'
+composer remove --dev --no-interaction malukenho/docheader
+composer remove --dev --no-interaction laminas/laminas-coding-standard squizlabs/php_codesniffer
+composer require --dev --no-interaction laminas/laminas-coding-standard:~2.2.0
+
+#if [$(composer remove --dev --no-interaction laminas/laminas-diactoros)]
+#then
+#    composer require --dev --no-interaction laminas/laminas-diactoros:^2.5.0
+#fi
+
+composer update --no-scripts
+composer cs-fix
+composer check
+
+composer config --unset platform
+composer update --no-scripts --lock --ignore-platform-reqs

@@ -1,0 +1,35 @@
+#!/bin/bash
+set -Eueo pipefail
+
+ORG=$(echo $1 | cut -d'/' -f1)
+REPO=$(echo $1 | cut -d'/' -f2)
+PROJECTS="${HOME}/projects"
+echo "Forking: ${ORG}/${REPO}"
+
+[ ! -d "${PROJECTS}" ] && mkdir -p "${PROJECTS}"
+cd "${PROJECTS}"
+
+if [ ! -d "${PROJECTS}/${REPO}" ]; then
+    CLONE=true
+else
+    CLONE=false
+fi;
+
+# Fork and clone the repo
+gh repo fork "${ORG}/${REPO}" --remote=true --clone=${CLONE}
+cd "${PROJECTS}/${REPO}"
+
+# Disable pushing upstream
+git remote set-url upstream --push no-push
+git fetch upstream
+
+# Detect default branch
+BRANCH=$(git remote show upstream | grep "HEAD branch" | sed 's/.*: //')
+echo "Detected default branch: ${BRANCH}"
+
+# Switch to default branch and update it
+git switch ${BRANCH}
+git pull --rebase --autostash upstream ${BRANCH}
+
+# Force cd into the project dir
+$SHELL
