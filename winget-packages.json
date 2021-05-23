@@ -22,6 +22,9 @@
 					"PackageIdentifier" : "GitHub.cli"
 				},
         {
+          "PackageIdentifier": "Insomnia.Insomnia"
+        },
+        {
           "PackageIdentifier": "JetBrains.PHPStorm"
         },
 				{
