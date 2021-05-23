@@ -25,6 +25,7 @@ When running `./install`, it will self update, update the powerlevel10k submodul
 ## Windows 10 packages
 
 Some default Windows 10 packages are available as well. You can install these from powershell with `winget`.
+[winget-cli](https://github.com/microsoft/winget-cli#readme) is installed by default since 21H1.
 
 ```powershell
 Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/geerteltink/dotfiles/main/winget-packages.json' -OutFile 'winget-packages.json'
