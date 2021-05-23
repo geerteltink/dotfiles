@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 set -Eueo pipefail
 
-NODECMD=$(which node)
-if [ $NODECMD != "" ]
+if [ $(which node) ]
 then
-  VERSION=$($NODECMD --version)
+  VERSION=$(node --version)
   [[ $VERSION =~ ^v16.* ]] || sudo rm /etc/apt/sources.list.d/node*.list
 fi
 
