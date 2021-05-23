@@ -22,6 +22,15 @@ zsh will be installed with the powerlevel10k theme. When starting your terminal 
 
 When running `./install`, it will self update, update the powerlevel10k submodule and even update the system.
 
+## Windows 10 packages
+
+Some default Windows 10 packages are available as well. You can install these from powershell with `winget`.
+
+```powershell
+Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/geerteltink/dotfiles/main/winget-packages.json' -OutFile 'winget-packages.json'
+winget import winget-packages.json
+```
+
 ## Get a better font
 
 Fonts look weird? No problem! Cascadia Code has a PL (Powerline) Glyph version! Go get it at [https://github.com/microsoft/cascadia-code/releases](https://github.com/microsoft/cascadia-code/releases) and change the fontFace in your terminal settings.
