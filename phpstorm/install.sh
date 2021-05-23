@@ -6,7 +6,7 @@ if [ -d /opt/phpstorm ]; then
 fi
 
 if [ ! -f /tmp/PhpStorm.tar.gz ]; then
-    wget -O /tmp/PhpStorm.tar.gz https://download.jetbrains.com/webide/PhpStorm-2020.3.2.tar.gz
+    wget -O /tmp/PhpStorm.tar.gz https://download.jetbrains.com/webide/PhpStorm-2021.1.2.tar.gz
 fi
 
 tar -xzf /tmp/PhpStorm.tar.gz -C /tmp
