@@ -6,9 +6,17 @@ then
     sudo add-apt-repository -yu ppa:git-core/ppa
 fi
 
+if [ ! -f /etc/apt/sources.list.d/github-cli.list ]
+then
+  curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+  sudo apt update
+fi
+
 PACKAGES=(
   git
   git-extras
+  gh
 )
 
 for pkg in "${PACKAGES[@]}"; do
