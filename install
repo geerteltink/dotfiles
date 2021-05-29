@@ -99,11 +99,7 @@ PACKAGES=(
 )
 
 for pkg in "${PACKAGES[@]}"; do
-  if [ $(dpkg-query -W -f='${Status}' $pkg 2>/dev/null | grep -c "ok installed") -eq 0 ];
-  then
-    log_info "Installing ${pkg}..."
-    sudo apt -y install $pkg
-  fi
+  dpkg -s $pkg > /dev/null 2>&1 || sudo apt -y install $pkg
 done
 
 # =======================================================================
