@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 set -Eueo pipefail
 
-if [ $(which node) ]
-then
-  VERSION=$(node --version)
-  [[ $VERSION =~ ^v16.* ]] || sudo rm /etc/apt/sources.list.d/node*.list
-fi
-
 if [ ! -f /etc/apt/sources.list.d/node*.list ]
 then
     curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
