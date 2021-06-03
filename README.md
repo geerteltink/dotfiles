@@ -4,6 +4,24 @@ Your dotfiles are how you personalize your system. These are mine.
 
 This is mainly used inside WSL2, but can be used in any ubuntu/debian operating system.
 
+## Tips & Tricks
+
+```text
+Arrow up    - search history backward
+Arrow down  - search history forward
+Arrow left  - jump to start of previous word
+Arrow right - jump to start of next word
+
+Ctrl + U    – delete from the cursor to the start of the line
+Ctrl + K    – delete from the cursor to the end of the line
+Ctrl + W    – delete from the cursor to the start of the preceding word
+Alt + D     – delete from the cursor to the end of the next word
+Ctrl + L    – clear the terminal
+
+z <insert favorite directory>
+../subdir   - change to subdirectory of parent
+```
+
 ## Installation
 
 ```bash
