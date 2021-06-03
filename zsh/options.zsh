@@ -1,24 +1,30 @@
 # Run cat -v in your favorite terminal emulator to observe key codes.
 
-bindkey '^[[A' up-line-or-search   # arrow-up
-bindkey '^[[B' down-line-or-search # arrow-down
-bindkey '^[[D' backward-word       # arrow-left
-bindkey '^[[C' forward-word        # arrow-right
+setopt NO_BEEP
+setopt NO_BG_NICE           # don't nice background tasks
+setopt NO_CORRECT
 
-setopt NO_BG_NICE       # don't nice background tasks
-setopt NO_HUP
-setopt NO_LIST_BEEP
-setopt LOCAL_OPTIONS    # allow functions to have local options
-setopt LOCAL_TRAPS      # allow functions to have local traps
-setopt HIST_VERIFY
-setopt SHARE_HISTORY    # share history between sessions ???
-setopt EXTENDED_HISTORY # add timestamps to history
-setopt PROMPT_SUBST
-setopt CORRECT
+setopt C_BASES              # Output hexadecimal numbers in the standard C format
 setopt COMPLETE_IN_WORD
-setopt IGNORE_EOF
+setopt EXTENDED_GLOB        # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename generation, etc.
 
-setopt APPEND_HISTORY                   # adds history
-setopt INC_APPEND_HISTORY SHARE_HISTORY # adds history incrementally and share it across sessions
-setopt HIST_IGNORE_ALL_DUPS             # don't record dupes in history
+setopt APPEND_HISTORY       # adds history
+setopt EXTENDED_HISTORY     # add timestamps to history
+setopt HIST_IGNORE_ALL_DUPS # don't record dupes in history
+setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+setopt INC_APPEND_HISTORY   # adds history incrementally
+setopt SHARE_HISTORY        # share history between sessions ???
+
+SAVEHIST=8192
+HISTSIZE=8192
+
+MAILCHECK=0                 # don't check for new mail
+
+bindkey "$terminfo[kcuu1]" history-beginning-search-backward # arrow-up
+bindkey "$terminfo[kcud1]" history-beginning-search-forward  # arrow-down
+bindkey "$terminfo[kcub1]" backward-word       # arrow-left
+bindkey "$terminfo[kcuf1]" forward-word        # arrow-right
+bindkey -s "$terminfo[kLFT5]" 'cd ..\n'
+bindkey -s "$terminfo[kRIT5]" 'ls\n'
