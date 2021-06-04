@@ -6,6 +6,9 @@
 		{
 			"Packages" :
 			[
+        {
+					"PackageIdentifier" : "7zip.7zipAlpha"
+				},
 				{
 					"PackageIdentifier" : "Bitwarden.Bitwarden"
 				},
