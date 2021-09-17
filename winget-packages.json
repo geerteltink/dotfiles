@@ -1,53 +1,54 @@
 {
-	"$schema" : "https://aka.ms/winget-packages.schema.2.0.json",
-	"CreationDate" : "2021-05-23T09:43:37.555-00:00",
-	"Sources" :
-	[
-		{
-			"Packages" :
-			[
+  "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
+  "Sources": [
+    {
+      "Packages": [
         {
-					"PackageIdentifier" : "7zip.7zipAlpha"
-				},
-				{
-					"PackageIdentifier" : "Bitwarden.Bitwarden"
-				},
+          "PackageIdentifier": "Microsoft.VC++2015-2019Redist-x64"
+        },
+        {
+          "PackageIdentifier": "Microsoft.VisualStudioCode"
+        },
+        {
+          "PackageIdentifier": "Microsoft.WindowsTerminal"
+        },
+        {
+          "PackageIdentifier": "7zip.7zip.Alpha.msi"
+        },
+        {
+          "PackageIdentifier": "Bitwarden.Bitwarden"
+        },
         {
           "PackageIdentifier": "Canonical.Ubuntu"
         },
-				{
-					"PackageIdentifier" : "Docker.DockerDesktop"
-				},
-				{
-					"PackageIdentifier" : "Git.Git"
-				},
-				{
-					"PackageIdentifier" : "GitHub.cli"
-				},
         {
-          "PackageIdentifier": "Insomnia.Insomnia"
+          "PackageIdentifier": "Docker.DockerDesktop"
         },
         {
-          "PackageIdentifier": "JetBrains.PHPStorm"
+          "PackageIdentifier": "dbeaver.dbeaver"
         },
-				{
-					"PackageIdentifier": "Microsoft.VC++2015-2019Redist-x64"
-				},
         {
-					"PackageIdentifier" : "Microsoft.VisualStudioCode"
-				},
-				{
-					"PackageIdentifier" : "Microsoft.WindowsTerminal"
+          "PackageIdentifier": "Git.Git"
+        },
+        {
+          "PackageIdentifier": "GitHub.cli"
+        },
+        {
+          "PackageIdentifier": "Postman.Postman"
+        },
+        {
+          "PackageIdentifier": "NextDNS.NextDNS"
+        },
+        {
+					"PackageIdentifier" : "clsid2.mpc-hc"
 				}
-			],
-			"SourceDetails" :
-			{
-				"Argument" : "https://winget.azureedge.net/cache",
-				"Identifier" : "Microsoft.Winget.Source_8wekyb3d8bbwe",
-				"Name" : "winget",
-				"Type" : "Microsoft.PreIndexed.Package"
-			}
-		}
-	],
-	"WinGetVersion" : "0.4.11391"
+      ],
+      "SourceDetails": {
+        "Argument": "https://winget.azureedge.net/cache",
+        "Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe",
+        "Name": "winget",
+        "Type": "Microsoft.PreIndexed.Package"
+      }
+    }
+  ]
 }
