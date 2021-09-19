@@ -15,6 +15,7 @@
           "style": "plain",
           "foreground": "#607D8B",
           "properties": {
+            "prefix": "",
             "text": "╭─"
           }
         },
@@ -131,6 +132,7 @@
           "style": "plain",
           "foreground": "#607D8B",
           "properties": {
+            "prefix": "",
             "text": "╰─"
           }
         },
