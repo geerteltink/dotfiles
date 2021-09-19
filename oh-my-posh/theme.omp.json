@@ -67,13 +67,6 @@
           }
         },
         {
-          "type": "node",
-          "style": "powerline",
-          "powerline_symbol": "\uE0B0",
-          "foreground": "#cccccc",
-          "background": "#86BBD8"
-        },
-        {
           "type": "executiontime",
           "style": "powerline",
           "powerline_symbol": "\uE0B0",
