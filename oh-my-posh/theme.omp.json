@@ -75,16 +75,6 @@
           }
         },
         {
-          "type": "executiontime",
-          "style": "powerline",
-          "powerline_symbol": "\uE0B0",
-          "background": "#607D8B",
-          "foreground": "#262b44",
-          "properties": {
-            "always_enabled": true
-          }
-        },
-        {
           "type": "root",
           "style": "powerline",
           "background": "#FF9800",
@@ -102,6 +92,31 @@
           "foreground": "#ffffff",
           "properties": {
             "prefix": " ✘ "
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "diamond",
+          "leading_diamond": "\uE0C5",
+          "background": "#F57F17",
+          "foreground": "#262b44",
+          "properties": {
+            "always_enabled": true
+          }
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "background": "#607D8B",
+          "foreground": "#262b44",
+          "properties": {
+            "time_format": "15:04:05"
           }
         }
       ]
