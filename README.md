@@ -26,7 +26,7 @@ z <insert favorite directory>
 
 ```bash
 # install .dotfiles
-git clone --recurse-submodules git@github.com:geerteltink/dotfiles.git ~/.dotfiles
+git clone git@github.com:geerteltink/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install
 
