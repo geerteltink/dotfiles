@@ -22,7 +22,7 @@ z <insert favorite directory>
 ../subdir   - change to subdirectory of parent
 ```
 
-## Installation
+## Installation Ubuntu
 
 ```bash
 # install .dotfiles
@@ -40,7 +40,7 @@ zsh will be installed with the powerlevel10k theme. When starting your terminal 
 
 When running `./install`, it will self update, update the powerlevel10k submodule and even update the system.
 
-## Windows 10 packages
+## Installation PowerShell
 
 Some default Windows 10 packages are available as well. You can install these from powershell with `winget`.
 [winget-cli](https://github.com/microsoft/winget-cli#readme) is installed by default since 21H1.
@@ -48,6 +48,25 @@ Some default Windows 10 packages are available as well. You can install these fr
 ```powershell
 Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/geerteltink/dotfiles/main/winget-packages.json' -OutFile 'winget-packages.json'
 winget import winget-packages.json
+```
+
+```powershell
+Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/geerteltink/dotfiles/main/oh-my-posh/theme.omp.json' -OutFile 'theme.omp.json'
+Install-Module oh-my-posh -Scope CurrentUser
+```
+
+Edit your PowerShell $PROFILE
+
+```powershell
+# Open editor
+code $PROFILE
+
+# Add this
+Import-Module oh-my-posh
+Set-PoshPrompt -Theme ~/theme.omp.json
+
+# Reload profile after saving
+. $PROFILE
 ```
 
 ## Get a better font
