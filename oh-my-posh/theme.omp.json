@@ -11,6 +11,14 @@
       "alignment": "left",
       "segments": [
         {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#607D8B",
+          "properties": {
+            "text": "╭─"
+          }
+        },
+        {
           "type": "session",
           "style": "diamond",
           "background": "#673AB7",
@@ -91,7 +99,35 @@
           "style": "powerline",
           "powerline_symbol": "\uE0B0",
           "background": "#BF360C",
-          "foreground": "#ffffff"
+          "foreground": "#ffffff",
+          "properties": {
+            "prefix": " ✘ "
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#607D8B",
+          "properties": {
+            "text": "╰─"
+          }
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#607D8B",
+          "properties": {
+            "prefix": "",
+            "postfix": "",
+            "text": "\u276F"
+          }
         }
       ]
     }
