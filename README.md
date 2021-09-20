@@ -53,6 +53,7 @@ winget import winget-packages.json
 ```powershell
 Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/geerteltink/dotfiles/main/oh-my-posh/theme.omp.json' -OutFile 'theme.omp.json'
 Install-Module oh-my-posh -Scope CurrentUser
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 Edit your PowerShell $PROFILE
