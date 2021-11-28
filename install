@@ -94,6 +94,9 @@ PACKAGES=(
   make
   screenfetch
   curl
+  gnupg
+  jq
+  crudini
   wget
   unzip
 )
