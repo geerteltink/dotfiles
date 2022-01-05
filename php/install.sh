@@ -2,6 +2,10 @@
 #
 # sudo apt purge 'php*'
 #
+# Switch PHP versions with
+#
+# $ sudo update-alternatives --config php
+#
 set -Eueo pipefail
 
 if [ ! -f /etc/apt/sources.list.d/ondrej*.list ]; then
@@ -10,7 +14,9 @@ fi
 
 if [ ! $(which php) ]
 then
+    sudo apt -y install php8.0-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis,sqlite3}
     sudo apt -y install php8.1-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis,sqlite3}
+    sudo update-alternatives --set php /usr/bin/php8.1
 fi
 
 if [ ! $(which composer) ]; then

@@ -40,6 +40,12 @@ zsh will be installed with the powerlevel10k theme. When starting your terminal 
 
 When running `./install`, it will self update, update the powerlevel10k submodule and even update the system.
 
+### Switching PHP versions
+
+```bash
+sudo update-alternatives --config php
+```
+
 ## Installation PowerShell
 
 Some default Windows 10 packages are available as well. You can install these from powershell with `winget`.
