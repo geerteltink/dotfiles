@@ -12,7 +12,17 @@ if [ ! -f /etc/apt/sources.list.d/ondrej*.list ]; then
     sudo add-apt-repository -yu ppa:ondrej/php
 fi
 
-if [ ! $(which php) ]
+if [ ! -f /usr/bin/php7.4 ]
+then
+    sudo apt -y install php7.4-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis,sqlite3}
+fi
+
+if [ ! -f /usr/bin/php8.0 ]
+then
+    sudo apt -y install php8.0-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis,sqlite3}
+fi
+
+if [ ! -f /usr/bin/php8.1 ]
 then
     sudo apt -y install php8.0-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis,sqlite3}
     sudo apt -y install php8.1-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis,sqlite3}
