@@ -28,15 +28,6 @@
           "PackageIdentifier": "dbeaver.dbeaver"
         },
         {
-          "PackageIdentifier": "Git.Git"
-        },
-        {
-          "PackageIdentifier": "GitHub.cli"
-        },
-        {
-          "PackageIdentifier": "JanDeDobbeleer.OhMyPosh"
-        },
-        {
           "PackageIdentifier": "Postman.Postman"
         },
         {
@@ -44,7 +35,10 @@
         },
         {
 					"PackageIdentifier" : "clsid2.mpc-hc"
-				}
+				},
+        {
+          "PackageIdentifier": "Zoom.Zoom"
+        }
       ],
       "SourceDetails": {
         "Argument": "https://winget.azureedge.net/cache",
