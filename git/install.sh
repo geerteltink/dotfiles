@@ -59,6 +59,7 @@ git config --global alias.last-tag "describe --abbrev=0 --tags"
 git config --global alias.l "log --pretty=format:'%C(yellow)%h %Creset%s%Cblue <%cn>' --no-merges --date=short"
 git config --global alias.lg "log --pretty=format:'%C(yellow)%h %C(green)%ad%Cred%d %Creset%s%Cblue <%cn>' --no-merges --date=short"
 git config --global alias.yolo '!git commit -m "$(curl -s whatthecommit.com/index.txt)"'
+git config --global alias.gone "! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '\$2 == \"[gone]\" {print \$1}' | xargs -r git branch -D"
 
 exit 0
 
