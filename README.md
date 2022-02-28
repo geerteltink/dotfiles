@@ -4,23 +4,34 @@ Your dotfiles are how you personalize your system. These are mine.
 
 This is mainly used inside WSL2, but can be used in any ubuntu/debian operating system.
 
-## Tips & Tricks
+## Setup WSL2
 
-```text
-Arrow up    - search history backward
-Arrow down  - search history forward
-Arrow left  - jump to start of previous word
-Arrow right - jump to start of next word
+You can install everything you need to run Windows Subsystem for Linux (WSL).
 
-Ctrl + U    – delete from the cursor to the start of the line
-Ctrl + K    – delete from the cursor to the end of the line
-Ctrl + W    – delete from the cursor to the start of the preceding word
-Alt + D     – delete from the cursor to the end of the next word
-Ctrl + L    – clear the terminal
+First, enable the virtual machine platform.
 
-z <insert favorite directory>
-../subdir   - change to subdirectory of parent
+```powershell
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all
 ```
+
+Next, install WSL via the windows store https://aka.ms/wslstorepage, or via powershell.
+
+```powershell
+wsl --install
+```
+
+Restart your machine and set the default WSL version and install a distribution.
+
+```powershell
+wsl --set-default-version 2
+wsl --list --online
+wsl --install -d Ubuntu
+```
+
+Next up install some tools from the windows store to get started.
+
+- https://aka.ms/terminal
+- https://aka.ms/vscode
 
 ## Installation Ubuntu
 
@@ -56,26 +67,6 @@ Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/geerteltink/dotfiles/m
 winget import winget-packages.json
 ```
 
-```powershell
-Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/geerteltink/dotfiles/main/oh-my-posh/theme.omp.json' -OutFile 'theme.omp.json'
-Install-Module oh-my-posh -Scope CurrentUser
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-Edit your PowerShell $PROFILE
-
-```powershell
-# Open editor
-code $PROFILE
-
-# Add this
-Import-Module oh-my-posh
-Set-PoshPrompt -Theme ~/theme.omp.json
-
-# Reload profile after saving
-. $PROFILE
-```
-
 ## Get a better font
 
 Fonts look weird? No problem! Cascadia Code has a PL (Powerline) Glyph version! Go get it at [https://github.com/microsoft/cascadia-code/releases](https://github.com/microsoft/cascadia-code/releases) and change the fontFace in your terminal settings.
@@ -93,3 +84,21 @@ Each component can consist of the following:
 - `*path.zsh` for zsh `$path` configuration.
 - `*.completion.zsh` for zsh command completion.
 - `*.zsh` for any other non path or completion related stuff.
+
+## zsh Tips & Tricks
+
+```text
+Arrow up    - search history backward
+Arrow down  - search history forward
+Arrow left  - jump to start of previous word
+Arrow right - jump to start of next word
+
+Ctrl + U    – delete from the cursor to the start of the line
+Ctrl + K    – delete from the cursor to the end of the line
+Ctrl + W    – delete from the cursor to the start of the preceding word
+Alt + D     – delete from the cursor to the end of the next word
+Ctrl + L    – clear the terminal
+
+z <insert favorite directory>
+../subdir   - change to subdirectory of parent
+```
