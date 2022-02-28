@@ -13,28 +13,37 @@
           "PackageIdentifier": "Microsoft.WindowsTerminal"
         },
         {
+          "PackageIdentifier": "Canonical.Ubuntu"
+        },
+        {
           "PackageIdentifier": "7zip.7zip.Alpha.msi"
         },
         {
           "PackageIdentifier": "Bitwarden.Bitwarden"
         },
         {
-          "PackageIdentifier": "Canonical.Ubuntu"
-        },
+					"PackageIdentifier" : "clsid2.mpc-hc"
+				},
         {
-          "PackageIdentifier": "Docker.DockerDesktop"
-        },
+					"PackageIdentifier" : "Dell.CommandUpdate"
+				},
+				{
+					"PackageIdentifier" : "Doist.Todoist"
+				},
         {
-          "PackageIdentifier": "dbeaver.dbeaver"
+					"PackageIdentifier" : "Mozilla.Firefox.DeveloperEdition"
+				},
+        {
+          "PackageIdentifier": "NextDNS.NextDNS"
         },
         {
           "PackageIdentifier": "Postman.Postman"
         },
         {
-          "PackageIdentifier": "NextDNS.NextDNS"
-        },
-        {
-					"PackageIdentifier" : "clsid2.mpc-hc"
+					"PackageIdentifier" : "Spotify.Spotify"
+				},
+				{
+					"PackageIdentifier" : "SlackTechnologies.Slack"
 				},
         {
           "PackageIdentifier": "Zoom.Zoom"
