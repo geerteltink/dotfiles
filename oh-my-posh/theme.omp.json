@@ -5,12 +5,6 @@
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#607D8B",
-          "style": "plain",
-          "template": "\u256d\u2500 ",
-          "type": "text"
-        },
-        {
           "background": "#673AB7",
           "foreground": "#D1C4E9",
           "leading_diamond": "\ue0b6",
@@ -74,58 +68,23 @@
           "type": "root"
         },
         {
+          "background": "#83769c",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "root_icon": "\u26a1",
+            "always_enabled": true
+          },
+          "style": "powerline",
+          "type": "executiontime"
+        },
+        {
           "background": "#BF360C",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
           "template": " \u2718 {{ if gt .Code 0 }}\uf00d {{ .Meaning }}{{ else }}\uf42e{{ end }} ",
           "type": "exit"
-        }
-      ],
-      "type": "prompt"
-    },
-    {
-      "alignment": "right",
-      "segments": [
-        {
-          "background": "#F57F17",
-          "foreground": "#262b44",
-          "leading_diamond": "\ue0c5",
-          "properties": {
-            "always_enabled": true
-          },
-          "style": "diamond",
-          "template": " {{ .FormattedMs }} ",
-          "type": "executiontime"
-        },
-        {
-          "background": "#607D8B",
-          "foreground": "#262b44",
-          "properties": {
-            "time_format": "15:04:05"
-          },
-          "style": "plain",
-          "template": " {{ .CurrentDate | date .Format }} ",
-          "type": "time"
-        }
-      ],
-      "type": "prompt"
-    },
-    {
-      "alignment": "left",
-      "newline": true,
-      "segments": [
-        {
-          "foreground": "#607D8B",
-          "style": "plain",
-          "template": "\u2570\u2500 ",
-          "type": "text"
-        },
-        {
-          "foreground": "#607D8B",
-          "style": "plain",
-          "template": "\u276f",
-          "type": "text"
         }
       ],
       "type": "prompt"
