@@ -37,12 +37,13 @@ Next up install some tools from the windows store to get started.
 
 ```bash
 # install .dotfiles
-git clone git@github.com:geerteltink/dotfiles.git ~/.dotfiles
+git clone https://github.com/geerteltink/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install
 
-# set zsh as default shell
+# set zsh or bash as default shell
 chsh -s $(which zsh)
+chsh -s $(which bash)
 ```
 
 This will run `install.sh` in each subfolder and install apps and symlink files to your home directory.
