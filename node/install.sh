@@ -23,7 +23,4 @@ done
 [ ! $(npm outdated -g npm >/dev/null 2>&1;) ] || sudo npm install -g npm
 [ ! $(npm outdated -g >/dev/null 2>&1;) ] || sudo npm update -g
 
-# Enable auto-completion
-sudo npm completion > /etc/bash_completion.d/npm
-
 exit 0
