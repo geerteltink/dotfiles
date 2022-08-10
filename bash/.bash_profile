@@ -3,7 +3,7 @@ export PATH="$HOME/bin:$HOME/.dotfiles/bin:$PATH";
 
 # Load the shell dotfiles, and then some:
 # * ~/.bash_extra can be used for other settings you don’t want to commit.
-for file in ~/.{bash_prompt,bash_exports,bash_aliases,bash_extra}; do
+for file in ~/.dotfiles/bash/system/{.prompt,.exports,.aliases,z.sh}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
