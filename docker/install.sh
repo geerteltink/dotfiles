@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 set -Eueo pipefail
 
+if [ -f /usr/local/bin/docker-compose ]
+then
+  sudo rm /usr/local/bin/docker-compose
+  sudo rm /etc/apt/sources.list.d/docker.list
+fi
+
+if [ -f /usr/bin/docker-credential-wincred.exe ]
+then
+  sudo rm /usr/bin/docker-credential-wincred.exe
+  sudo rm /etc/apt/sources.list.d/docker.list
+fi
+
 if [ ! -f /etc/apt/sources.list.d/docker.list ]
 then
   # Remove old packages
@@ -25,6 +37,7 @@ then
     docker-ce
     docker-ce-cli
     containerd.io
+    docker-compose-plugin
   )
 
   for pkg in "${DOCKER_PACKAGES[@]}"; do
@@ -35,21 +48,6 @@ then
   sudo groupadd docker --force
   sudo usermod -aG docker $USER
 fi
-
-# Install docker compose
-COMPOSE_VERSION=$(curl -fsSL -o /dev/null -w "%{url_effective}" "https://github.com/docker/compose/releases/latest" | xargs basename)
-curl -fsSL --create-dirs -o ~/.docker/cli-plugins/docker-compose "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-linux-$(uname -m)"
-chmod +x ~/.docker/cli-plugins/docker-compose
-
-# Install docker compose switch
-SWITCH_VERSION=$(curl -fsSL -o /dev/null -w "%{url_effective}" "https://github.com/docker/compose-switch/releases/latest" | xargs basename)
-sudo curl -fsSL -o /usr/local/bin/docker-compose "https://github.com/docker/compose-switch/releases/download/${SWITCH_VERSION}/docker-compose-linux-$(dpkg --print-architecture)"
-sudo chmod +x /usr/local/bin/docker-compose
-
-# Install docker credential helper
-WINCRED_VERSION=$(curl -fsSL -o /dev/null -w "%{url_effective}" "https://github.com/docker/docker-credential-helpers/releases/latest" | xargs basename)
-sudo curl -fsSL "https://github.com/docker/docker-credential-helpers/releases/download/${WINCRED_VERSION}/docker-credential-wincred-${WINCRED_VERSION}-amd64.zip" | zcat | sudo tee /usr/bin/docker-credential-wincred.exe >/dev/null
-sudo chmod +x /usr/bin/docker-credential-wincred.exe
 
 if [[ ! -f ~/.docker/config.json ]]; then
   sudo mkdir -p ~/.docker/config.json
