@@ -1,18 +1,6 @@
 #!/usr/bin/env bash
 set -Eueo pipefail
 
-if [ -f /usr/local/bin/docker-compose ]
-then
-  sudo rm /usr/local/bin/docker-compose
-  sudo rm /etc/apt/sources.list.d/docker.list
-fi
-
-if [ -f /usr/bin/docker-credential-wincred.exe ]
-then
-  sudo rm /usr/bin/docker-credential-wincred.exe
-  sudo rm /etc/apt/sources.list.d/docker.list
-fi
-
 if [ ! -f /etc/apt/sources.list.d/docker.list ]
 then
   # Remove old packages
@@ -47,6 +35,11 @@ then
   # Add current user to docker group
   sudo groupadd docker --force
   sudo usermod -aG docker $USER
+fi
+
+if [ ! -f /usr/local/bin/docker-compose ]
+then
+  curl -fL https://raw.githubusercontent.com/docker/compose-switch/master/install_on_linux.sh | sudo sh
 fi
 
 if [[ ! -f ~/.docker/config.json ]]; then
