@@ -62,6 +62,7 @@ PACKAGES=(
   screenfetch
   curl
   gnupg
+  jc
   jq
   crudini
   wget
