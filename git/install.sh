@@ -34,9 +34,8 @@ fi
 
 if [ ! $(git config --global user.signingkey) ]
 then
-    gpg --list-keys --keyid-format LONG $(git config --global user.email)
-    echo ' - What is your git signing key?'
-    read GIT_SIGNING_KEY </dev/tty
+    EMAIL=$(git config --global user.email)
+    GIT_SIGNING_KEY=$(gpg --list-secret-keys --keyid-format=LONG "$EMAIL" | grep 'sec' | grep -o -P '(?<=/)[A-Z0-9]{16}')
     git config --global user.signingkey "$GIT_SIGNING_KEY"
     git config --global commit.gpgsign true
 fi
