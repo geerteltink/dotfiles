@@ -1,6 +1,10 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$HOME/.dotfiles/bin:$PATH";
 
+if [ -d "/usr/local/go/bin" ]; then
+  export PATH=$PATH:/usr/local/go/bin
+fi
+
 # Load the shell dotfiles, and then some:
 # * ~/.bash_extra can be used for other settings you don’t want to commit.
 for file in ~/.dotfiles/bash/system/{.prompt,.exports,.aliases,.completion,z.sh}; do
