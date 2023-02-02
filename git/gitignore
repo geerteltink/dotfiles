@@ -29,6 +29,7 @@ Thumbs.db
 # IDE                #
 ######################
 .idea/
+.fleet/
 .project/
 .settings/
 .vagrant/
