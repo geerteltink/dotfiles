@@ -27,7 +27,6 @@ DOCKER_PACKAGES=(
   docker-ce-cli
   containerd.io
   docker-buildx-plugin
-  docker-compose-plugin
 )
 
 for pkg in "${DOCKER_PACKAGES[@]}"; do
@@ -38,13 +37,8 @@ done
 sudo groupadd docker --force
 sudo usermod -aG docker $USER
 
-if [ ! -f /usr/local/bin/docker-compose ]
-then
-  curl -fL https://raw.githubusercontent.com/docker/compose-switch/master/install_on_linux.sh | sudo sh
-fi
-
 if [[ ! -f ~/.docker/config.json ]]; then
-  sudo mkdir -p ~/.docker/config.json
+  sudo mkdir -p ~/.docker
   echo '{}' | sudo tee ~/.docker/config.json >/dev/null
 fi
 sudo jq -s add ~/.docker/config.json $PWD/docker/config.json
