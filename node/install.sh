@@ -3,7 +3,7 @@ set -Eueo pipefail
 
 if [ ! -f /etc/apt/sources.list.d/node*.list ]
 then
-    curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
     sudo apt-get install -y nodejs
 fi
 
