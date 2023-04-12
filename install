@@ -45,7 +45,7 @@ fi
 if [ $SKIP_UPDATE = 0 ]; then
   log_info "Updating system..."
   sudo apt update
-  sudo apt -y upgrade
+  sudo NEEDRESTART_MODE=a apt -y -o APT::Get::Always-Include-Phased-Updates=true upgrade
   log_info "Updating dotfiles..."
   git pull --rebase --autostash
 fi
@@ -88,7 +88,7 @@ done
 
 if [ $SKIP_UPDATE = 0 ]; then
   log_info "Cleaning up system..."
-  sudo apt -y autoremove
+  sudo NEEDRESTART_MODE=a apt -y autoremove
   sudo apt -y clean
 fi
 
