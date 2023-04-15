@@ -40,17 +40,15 @@ Next up install some tools from the windows store to get started.
 git clone https://github.com/geerteltink/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install
-
-# set zsh or bash as default shell
-chsh -s $(which zsh)
-chsh -s $(which bash)
 ```
 
 This will run `install.sh` in each subfolder and install apps and symlink files to your home directory.
 
-zsh will be installed with the powerlevel10k theme. When starting your terminal it will source all `.zsh` files in each subfolder.
+When running `./install`, it will self update and update the system.
 
-When running `./install`, it will self update, update the powerlevel10k submodule and even update the system.
+### Local export variables
+
+Local variables can be added as an export in `~/.bash_env`.
 
 ### Switching PHP versions
 

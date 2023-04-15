@@ -16,6 +16,11 @@ for file in ~/.dotfiles/bash/system/{.prompt,.exports,.aliases,.completion,z.sh}
 done;
 unset file;
 
+# Store local export variables in .bash_env
+if [ -d "$HOME/.bash_env" ]; then
+  [ -n "$PS1" ] && source "$HOME/.bash_env";
+fi
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 
