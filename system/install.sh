@@ -13,4 +13,7 @@ done
 sudo ntpdate -u pool.ntp.org
 sudo sysctl -w fs.inotify.max_user_watches=524288
 
+# Disable apt update ubuntu pro esm warnings
+sudo [ -s "$HOME/.nvm/bash_completion" ] && rm /etc/apt/apt.conf.d/20apt-esm-hook.conf
+
 exit 0
