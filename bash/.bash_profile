@@ -9,6 +9,9 @@ if [ -d "$HOME/.cargo/bin" ]; then
   export PATH="$PATH:$HOME/.cargo/bin"
 fi
 
+# Load nvm
+[ -s "$HOME/.nvm/nvm.sh" ] && \. "$HOME/.nvm/nvm.sh"
+
 # Load the shell dotfiles, and then some:
 # * ~/.bash_extra can be used for other settings you don’t want to commit.
 for file in ~/.dotfiles/bash/system/{.prompt,.exports,.aliases,.completion,z.sh}; do
