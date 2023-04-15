@@ -23,6 +23,6 @@ if [ ! $(which composer) ]; then
     sudo mv composer.phar /usr/local/bin/composer
 fi
 
-sudo composer self-update
+sudo composer self-update --no-plugins --no-scripts --quiet --stable
 
 exit 0
