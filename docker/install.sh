@@ -4,7 +4,7 @@ set -Eueo pipefail
 if [ ! -f /etc/apt/sources.list.d/docker.list ]
 then
   # Remove old packages
-  sudo apt remove docker docker-engine docker-ce docker.io containerd runc
+  sudo apt remove docker docker-engine docker.io containerd runc
 
   # Install dependencies
   PACKAGES=(
