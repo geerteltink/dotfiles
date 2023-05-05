@@ -26,7 +26,6 @@ DOCKER_PACKAGES=(
   docker-ce
   docker-ce-cli
   containerd.io
-  docker-buildx-plugin
 )
 
 for pkg in "${DOCKER_PACKAGES[@]}"; do
@@ -49,7 +48,9 @@ if [[ ! -f /etc/docker/daemon.json ]]; then
 fi
 sudo jq -s add /etc/docker/daemon.json $PWD/docker/daemon.json
 
+# Use systemd to startup docker
+# Both methods at the same time does not work!
 sudo crudini --set /etc/wsl.conf boot systemd '"true"'
-sudo crudini --set /etc/wsl.conf boot command '"service docker start"'
+#sudo crudini --set /etc/wsl.conf boot command '"service docker start"'
 
 exit 0
