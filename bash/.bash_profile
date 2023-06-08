@@ -1,12 +1,14 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$HOME/.dotfiles/bin:$PATH";
 
+# Go
 if [ -d "/usr/local/go/bin" ]; then
   export PATH=$PATH:/usr/local/go/bin
 fi
 
-if [ -d "$HOME/.cargo/bin" ]; then
-  export PATH="$PATH:$HOME/.cargo/bin"
+# Rust
+if [ -d "$HOME/.cargo/env" ]; then
+  source "$HOME/.cargo/env"
 fi
 
 # Load nvm
