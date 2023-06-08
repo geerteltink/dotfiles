@@ -2,14 +2,10 @@
 export PATH="$HOME/bin:$HOME/.dotfiles/bin:$PATH";
 
 # Go
-if [ -d "/usr/local/go/bin" ]; then
-  export PATH=$PATH:/usr/local/go/bin
-fi
+[ -d "/usr/local/go/bin" ] && export PATH=$PATH:/usr/local/go/bin
 
 # Rust
-if [ -d "$HOME/.cargo/env" ]; then
-  source "$HOME/.cargo/env"
-fi
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 # Load nvm
 [ -s "$HOME/.nvm/nvm.sh" ] && \. "$HOME/.nvm/nvm.sh"
