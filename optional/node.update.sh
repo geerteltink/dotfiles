@@ -7,7 +7,7 @@ if ! [ -x "$(command -v npm)" ]; then
   exit 0
 fi
 
-log_info "Updating node npm..."
+log_info "Updating node npm"
 
 sudo npm install -g npm
 sudo npm update -g

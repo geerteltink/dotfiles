@@ -7,7 +7,7 @@ if ! [ -x "$(command -v composer)" ]; then
   exit 0
 fi
 
-log_info "Updating php composer..."
+log_info "Updating php composer"
 
 sudo composer self-update --no-plugins --no-scripts --quiet --stable
 

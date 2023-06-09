@@ -7,7 +7,7 @@ if ! [ -x "$(command -v rustup)" ]; then
   exit 0
 fi
 
-log_info "Updating rust..."
+log_info "Updating rust"
 
 rustup update
 

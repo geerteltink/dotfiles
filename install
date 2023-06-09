@@ -43,10 +43,10 @@ if [ $# -ge 1 ] && [ "$1" = "--skip-update" ]; then
 fi
 
 if [ $SKIP_UPDATE = 0 ]; then
-  log_info "Updating system..."
+  log_info "Updating system"
   sudo apt update
   sudo NEEDRESTART_MODE=a apt -y -o APT::Get::Always-Include-Phased-Updates=true upgrade
-  log_info "Updating dotfiles..."
+  log_info "Updating dotfiles"
   git pull --rebase --autostash
 fi
 
@@ -78,7 +78,7 @@ done
 # =======================================================================
 
 find . -name install.sh | while read installer ; do
-  log_info "Installing ${installer}..."
+  log_info "Installing ${installer}"
   sh -c "${installer}" ;
 done
 
@@ -97,7 +97,7 @@ fi
 # =======================================================================
 
 if [ $SKIP_UPDATE = 0 ]; then
-  log_info "Cleaning up system..."
+  log_info "Cleaning up system"
   sudo NEEDRESTART_MODE=a apt -y autoremove
   sudo apt -y clean
 fi
