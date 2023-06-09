@@ -3,12 +3,9 @@ set -Eueo pipefail
 
 source "${DOTFILES_DIR}/lib/log.sh"
 
-if ! [ -x "$(command -v rustup)" ]; then
-  exit 0
+if [ -x "$(command -v rustup)" ]; then
+  log_info "Updating rust"
+  rustup update
 fi
-
-log_info "Updating rust"
-
-rustup update
 
 exit 0
