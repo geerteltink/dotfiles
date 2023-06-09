@@ -19,7 +19,4 @@ for pkg in "${PACKAGES[@]}"; do
   dpkg -s $pkg > /dev/null 2>&1 || sudo apt -y install $pkg
 done
 
-[ ! $(npm outdated -g npm >/dev/null 2>&1;) ] || sudo npm install -g npm
-[ ! $(npm outdated -g >/dev/null 2>&1;) ] || sudo npm update -g
-
 exit 0
