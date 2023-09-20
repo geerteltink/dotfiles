@@ -26,7 +26,7 @@ sudo [ -s "$HOME/.nvm/bash_completion" ] && rm /etc/apt/apt.conf.d/20apt-esm-hoo
 
 # Configure WSL
 sudo crudini --set /etc/wsl.conf boot systemd true
-sudo crudini --set /etc/wsl.conf wsl2 memory 16GB
+sudo crudini --set /etc/wsl.conf wsl2 memory 8GB
 sudo crudini --set /etc/wsl.conf wsl2 processors 8
 sudo crudini --set /etc/wsl.conf experimental autoMemoryReclaim gradual
 sudo crudini --set /etc/wsl.conf experimental sparseVhd true
