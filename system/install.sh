@@ -6,12 +6,12 @@ PACKAGES=(
 )
 
 for pkg in "${PACKAGES[@]}"; do
-  dpkg -s $pkg > /dev/null 2>&1 || sudo apt -y install $pkg
+  dpkg -s "$pkg" >/dev/null 2>&1 || sudo apt -y install "$pkg"
 done
 
 # Auto sync time
 sudo mkdir -p /etc/systemd/system/systemd-timesyncd.service.d
-sudo tee /etc/systemd/system/systemd-timesyncd.service.d/override.conf > /dev/null <<'EOF'
+sudo tee /etc/systemd/system/systemd-timesyncd.service.d/override.conf >/dev/null <<'EOF'
 [Unit]
 ConditionVirtualization=
 EOF

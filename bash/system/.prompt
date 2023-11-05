@@ -22,9 +22,9 @@ prompt_git() {
 	# Get the short symbolic ref. If HEAD isn’t a symbolic ref, get a
 	# tracking remote branch or tag. Otherwise, get the
 	# short SHA for the latest commit, or give up.
-	branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
-		git describe --all --exact-match HEAD 2> /dev/null || \
-		git rev-parse --short HEAD 2> /dev/null || \
+	branchName="$(git symbolic-ref --quiet --short HEAD 2>/dev/null || \
+		git describe --all --exact-match HEAD 2>/dev/null || \
+		git rev-parse --short HEAD 2>/dev/null || \
 		echo '(unknown)')";
 
 	# Early exit for Chromium & Blink repo, as the dirty check takes too long.
@@ -57,7 +57,7 @@ prompt_git() {
 	echo -e "${1}${branchName}${2}${s}";
 }
 
-if tput setaf 1 &> /dev/null; then
+if tput setaf 1 &>/dev/null; then
 	tput sgr0; # reset colors
 	bold=$(tput bold);
 	reset=$(tput sgr0);
