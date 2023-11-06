@@ -12,12 +12,12 @@ then
   )
 
   for pkg in "${PACKAGES[@]}"; do
-    dpkg -s $pkg > /dev/null 2>&1 || sudo apt -y install $pkg
+    dpkg -s "$pkg" >/dev/null 2>&1 || sudo apt -y install "$pkg"
   done
 
   # Add docker repo
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
   sudo apt update
 fi
 
@@ -29,23 +29,23 @@ DOCKER_PACKAGES=(
 )
 
 for pkg in "${DOCKER_PACKAGES[@]}"; do
-  dpkg -s $pkg > /dev/null 2>&1 || sudo apt -y install $pkg
+  dpkg -s "$pkg" >/dev/null 2>&1 || sudo apt -y install "$pkg"
 done
 
 # Add current user to docker group
 sudo groupadd docker --force
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "$USER"
 
 if [[ ! -f ~/.docker/config.json ]]; then
   sudo mkdir -p ~/.docker
   echo '{}' | sudo tee ~/.docker/config.json >/dev/null
 fi
-sudo jq -s add ~/.docker/config.json $PWD/docker/config.json
+sudo jq -s add ~/.docker/config.json "$PWD/docker/config.json"
 
 if [[ ! -f /etc/docker/daemon.json ]]; then
   sudo mkdir -p /etc/docker
   echo '{}' | sudo tee /etc/docker/daemon.json >/dev/null
 fi
-sudo jq -s add /etc/docker/daemon.json $PWD/docker/daemon.json
+sudo jq -s add /etc/docker/daemon.json "$PWD/docker/daemon.json"
 
 exit 0

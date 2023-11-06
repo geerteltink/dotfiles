@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSIONS=('7.4' '8.0' '8.1')
+VERSIONS=('8.1' '8.2')
 PARAMS=('locked' 'lowest' 'latest')
 
 # Set default PHP
@@ -24,22 +24,22 @@ do
     # Update dependencies
     if [ "${PARAM}" == "lowest" ]
     then
-      /usr/bin/php${VERSION} /usr/local/bin/composer update --prefer-lowest
+      "/usr/bin/php${VERSION}" /usr/local/bin/composer update --prefer-lowest
     elif [ "${PARAM}" == "latest" ]
     then
-      /usr/bin/php${VERSION} /usr/local/bin/composer update
+      "/usr/bin/php${VERSION}" /usr/local/bin/composer update
     elif [ "${VERSION}" == "${VERSIONS[0]}" ] && [ "${PARAM}" == "${PARAMS[0]}" ]
     then
-      /usr/bin/php${VERSION} /usr/local/bin/composer install
+      "/usr/bin/php${VERSION}" /usr/local/bin/composer install
     fi
 
     # Run tests
-    /usr/bin/php${VERSION} ./vendor/bin/phpunit
+    "/usr/bin/php${VERSION}" ./vendor/bin/phpunit
 
     if [ "${VERSION}" == "${VERSIONS[0]}" ] && [ "${PARAM}" == "${PARAMS[0]}" ]
     then
-      [ -f "phpcs.xml" ] && /usr/bin/php${VERSION} ./vendor/bin/phpcs
-      [ -f "psalm.xml.dist" ] && /usr/bin/php${VERSION} ./vendor/bin/psalm
+      [ -f "phpcs.xml" ] && "/usr/bin/php${VERSION}" ./vendor/bin/phpcs
+      [ -f "psalm.xml.dist" ] && "/usr/bin/php${VERSION}" ./vendor/bin/psalm
     fi
 
     # Reset lock file
@@ -48,4 +48,4 @@ do
 done
 
 # Reset dependencies
-/usr/bin/php${VERSIONS[0]} /usr/local/bin/composer install
+"/usr/bin/php${VERSIONS[0]}" /usr/local/bin/composer install

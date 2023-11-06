@@ -3,13 +3,13 @@ set -Eueo pipefail
 
 if [ ! -f /etc/apt/sources.list.d/git-core*.list ]
 then
-    sudo add-apt-repository -yu ppa:git-core/ppa
+  sudo add-apt-repository -yu ppa:git-core/ppa
 fi
 
 if [ ! -f /etc/apt/sources.list.d/github-cli.list ]
 then
   curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
-  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
   sudo apt update
 fi
 
@@ -20,24 +20,24 @@ PACKAGES=(
 )
 
 for pkg in "${PACKAGES[@]}"; do
-  dpkg -s $pkg > /dev/null 2>&1 || sudo apt -y install $pkg
+  dpkg -s "$pkg" >/dev/null 2>&1 || sudo apt -y install "$pkg"
 done
 
 ln -nsf $PWD/git/gitignore ~/.gitignore
 
 if [ ! $(git config --global user.email) ]
 then
-    echo ' - What is your git email?'
-    read GIT_USER_EMAIL </dev/tty
-    git config --global user.email "$GIT_USER_EMAIL"
+  echo ' - What is your git email?'
+  read GIT_USER_EMAIL </dev/tty
+  git config --global user.email "$GIT_USER_EMAIL"
 fi
 
 if [ ! $(git config --global user.signingkey) ]
 then
-    EMAIL=$(git config --global user.email)
-    GIT_SIGNING_KEY=$(gpg --list-secret-keys --keyid-format=LONG "$EMAIL" | grep 'sec' | grep -o -P '(?<=/)[A-Z0-9]{16}')
-    git config --global user.signingkey "$GIT_SIGNING_KEY"
-    git config --global commit.gpgsign true
+  EMAIL=$(git config --global user.email)
+  GIT_SIGNING_KEY=$(gpg --list-secret-keys --keyid-format=LONG "$EMAIL" | grep 'sec' | grep -o -P '(?<=/)[A-Z0-9]{16}')
+  git config --global user.signingkey "$GIT_SIGNING_KEY"
+  git config --global commit.gpgsign true
 fi
 
 git config --global user.name "Geert Eltink"

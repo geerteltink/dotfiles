@@ -1,6 +1,23 @@
 #!/usr/bin/env bash
 set -Eueo pipefail
 
+PACKAGES=(
+  systemd-timesyncd
+)
+
+for pkg in "${PACKAGES[@]}"; do
+  dpkg -s "$pkg" >/dev/null 2>&1 || sudo apt -y install "$pkg"
+done
+
+# Auto sync time
+sudo mkdir -p /etc/systemd/system/systemd-timesyncd.service.d
+sudo tee /etc/systemd/system/systemd-timesyncd.service.d/override.conf >/dev/null <<'EOF'
+[Unit]
+ConditionVirtualization=
+EOF
+sudo sudo systemctl daemon-reload
+sudo systemctl start systemd-timesyncd
+
 # Use max file watches
 sudo sysctl -w fs.inotify.max_user_watches=524288
 
