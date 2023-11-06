@@ -3,7 +3,7 @@ set -Eueo pipefail
 
 if [ ! -f /etc/apt/sources.list.d/git-core*.list ]
 then
-    sudo add-apt-repository -yu ppa:git-core/ppa
+  sudo add-apt-repository -yu ppa:git-core/ppa
 fi
 
 if [ ! -f /etc/apt/sources.list.d/github-cli.list ]
@@ -27,17 +27,17 @@ ln -nsf $PWD/git/gitignore ~/.gitignore
 
 if [ ! $(git config --global user.email) ]
 then
-    echo ' - What is your git email?'
-    read GIT_USER_EMAIL </dev/tty
-    git config --global user.email "$GIT_USER_EMAIL"
+  echo ' - What is your git email?'
+  read GIT_USER_EMAIL </dev/tty
+  git config --global user.email "$GIT_USER_EMAIL"
 fi
 
 if [ ! $(git config --global user.signingkey) ]
 then
-    EMAIL=$(git config --global user.email)
-    GIT_SIGNING_KEY=$(gpg --list-secret-keys --keyid-format=LONG "$EMAIL" | grep 'sec' | grep -o -P '(?<=/)[A-Z0-9]{16}')
-    git config --global user.signingkey "$GIT_SIGNING_KEY"
-    git config --global commit.gpgsign true
+  EMAIL=$(git config --global user.email)
+  GIT_SIGNING_KEY=$(gpg --list-secret-keys --keyid-format=LONG "$EMAIL" | grep 'sec' | grep -o -P '(?<=/)[A-Z0-9]{16}')
+  git config --global user.signingkey "$GIT_SIGNING_KEY"
+  git config --global commit.gpgsign true
 fi
 
 git config --global user.name "Geert Eltink"

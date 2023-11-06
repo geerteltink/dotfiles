@@ -18,7 +18,7 @@ then
     sudo update-alternatives --set php /usr/bin/php8.2
 fi
 
-if [ ! $(which composer) ]; then
+if [ ! "$(which composer)" ]; then
     curl -sS https://getcomposer.org/installer | php
     sudo mv composer.phar /usr/local/bin/composer
 fi

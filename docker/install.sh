@@ -34,18 +34,18 @@ done
 
 # Add current user to docker group
 sudo groupadd docker --force
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "$USER"
 
 if [[ ! -f ~/.docker/config.json ]]; then
   sudo mkdir -p ~/.docker
   echo '{}' | sudo tee ~/.docker/config.json >/dev/null
 fi
-sudo jq -s add ~/.docker/config.json $PWD/docker/config.json
+sudo jq -s add ~/.docker/config.json "$PWD/docker/config.json"
 
 if [[ ! -f /etc/docker/daemon.json ]]; then
   sudo mkdir -p /etc/docker
   echo '{}' | sudo tee /etc/docker/daemon.json >/dev/null
 fi
-sudo jq -s add /etc/docker/daemon.json $PWD/docker/daemon.json
+sudo jq -s add /etc/docker/daemon.json "$PWD/docker/daemon.json"
 
 exit 0
