@@ -9,4 +9,11 @@ if [ -x "$(command -v npm)" ]; then
   sudo npm update -g
 fi
 
+if [ -x "$(command -v bun)" ]; then
+  log_info "Updating bun"
+  bun upgrade
+else
+  curl -fsSL https://bun.sh/install | sudo bash
+fi
+
 exit 0
