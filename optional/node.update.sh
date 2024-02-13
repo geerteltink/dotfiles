@@ -13,7 +13,7 @@ if [ -x "$(command -v bun)" ]; then
   log_info "Updating bun"
   bun upgrade
 else
-  curl -fsSL https://bun.sh/install | sudo bash
+  curl -fsSL https://bun.sh/install | bash
 fi
 
 exit 0
