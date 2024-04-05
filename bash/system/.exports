@@ -24,7 +24,4 @@ export UID
 export HOST_GID=$(id -g)
 export HOST_UID=$(id -u)
 
-export BUN_INSTALL="$HOME/.bun"
-PATH="$BUN_INSTALL/bin:$PATH"
-
 export PATH="$HOME/bin:$PATH"
