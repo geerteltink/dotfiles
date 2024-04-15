@@ -25,5 +25,8 @@ alias myip="curl http://ipecho.net/plain; echo"
 
 alias update='sudo -- sh -c "apt update && apt -y upgrade && apt -y autoremove && apt -y clean && npm update -g"'
 
+# List available scripts
+alias scripts="cat package.json | jq --color-output '.scripts'"
+
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
