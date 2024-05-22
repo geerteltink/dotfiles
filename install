@@ -77,6 +77,7 @@ done
 # Install components
 # =======================================================================
 
+sh -c "./keys/install.sh" ;
 find . -name install.sh | while read -r installer ; do
   log_info "Installing ${installer}"
   sh -c "${installer}" ;

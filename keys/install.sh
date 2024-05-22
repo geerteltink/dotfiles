@@ -1,47 +1,36 @@
 #!/usr/bin/env bash
 set -Eueo pipefail
 
-#
-# Import gpg keys with extension `.pgp.key`
-#
-for FILE in keys/*.pgp.key; do
-  [ -f "$FILE" ] || continue
-  gpg --import $FILE
-  rm $FILE
-done
+[ -d ~/.ssh ] || mkdir ~/.ssh
+
+if [ ! -f ~/.ssh/id_signing.pub ]
+then
+  ssh-keygen -t ed25519 -C "signing key" -f ~/.ssh/id_signing -q -N ""
+  ssh-keygen -y -f ~/.ssh/id_signing > ~/.ssh/id_signing.pub
+fi
 
 #
-# Import ssh keys with extension `.rsa.key`
+# Import ssh keys and set host config
 #
-[ -d ~/.ssh ] || mkdir ~/.ssh
-for FILE in keys/*.rsa.key; do
+for FILE in ~/.ssh/*.key; do
   [ -f "$FILE" ] || continue
   FILENAME=$(basename $FILE)
-  HOST=$(echo $FILENAME | sed 's/.rsa.key//')
-
-  # Copy key if it doesn't exist
-  if [ ! -f ~/.ssh/$FILENAME ]
-  then
-    cp $FILE ~/.ssh
-    sudo chmod 600 ~/.ssh/$FILENAME
-  fi
+  HOST=$(echo $FILENAME | sed 's/.key//')
 
   # Create public key if it doesn't exist
   if [ ! -f ~/.ssh/$FILENAME.pub ]
   then
     ssh-keygen -y -f ~/.ssh/$FILENAME > ~/.ssh/$FILENAME.pub
-
-    # Update ssh config
-    if [ $HOST != "default" ]
-    then
-      echo "Host $HOST" >> ~/.ssh/config
-      echo "    IdentityFile ~/.ssh/$FILENAME" >> ~/.ssh/config
-      echo "    ForwardAgent yes" >> ~/.ssh/config
-      echo "" >> ~/.ssh/config
-    fi
   fi
 
-  rm "$FILE"
+  # Update ssh config
+  if ! grep -Fxq "Host $HOST" ~/.ssh/config
+  then
+    echo "Host $HOST" >> ~/.ssh/config
+    echo "    IdentityFile ~/.ssh/$FILENAME" >> ~/.ssh/config
+    echo "    ForwardAgent yes" >> ~/.ssh/config
+    echo "" >> ~/.ssh/config
+  fi
 done
 
 #
@@ -49,9 +38,15 @@ done
 #
 # This is added to `/etc/ssh/ssh_config` to make sure it's the last one
 #
-if ! grep -Fxq "IdentityFile ~/.ssh/default.rsa.key" /etc/ssh/ssh_config
+if [ ! -f ~/.ssh/id_default.pub ]
 then
-  echo "IdentityFile ~/.ssh/default.rsa.key" | sudo tee -a /etc/ssh/ssh_config
+  ssh-keygen -t ed25519 -C "default key" -f ~/.ssh/id_default -q -N ""
+  ssh-keygen -y -f ~/.ssh/id_default > ~/.ssh/id_default.pub
+fi
+
+if ! grep -Fxq "    IdentityFile ~/.ssh/id_default" /etc/ssh/ssh_config
+then
+  echo "    IdentityFile ~/.ssh/id_default" | sudo tee -a /etc/ssh/ssh_config
 fi
 
 sudo chmod 700 -R ~/.ssh

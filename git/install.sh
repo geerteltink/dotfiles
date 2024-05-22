@@ -27,15 +27,10 @@ then
   git config --global user.email "$GIT_USER_EMAIL"
 fi
 
-if [ ! $(git config --global user.signingkey) ]
-then
-  EMAIL=$(git config --global user.email)
-  GIT_SIGNING_KEY=$(gpg --list-secret-keys --keyid-format=LONG "$EMAIL" | grep 'sec' | grep -o -P '(?<=/)[A-Z0-9]{16}')
-  git config --global user.signingkey "$GIT_SIGNING_KEY"
-  git config --global commit.gpgsign true
-fi
-
 git config --global user.name "Geert Eltink"
+git config --global user.signingkey ~/.ssh/id_signing
+git config --global commit.gpgsign true
+git config --global gpg.format ssh
 git config --global core.autocrlf "input"
 git config --global core.eol "lf"
 git config --global core.excludesfile "~/.gitignore"
