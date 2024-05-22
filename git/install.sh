@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 set -Eueo pipefail
 
-if [ ! -f /etc/apt/sources.list.d/git-core*.list ]
-then
-  sudo add-apt-repository -yu ppa:git-core/ppa
-fi
-
 if [ ! -f /etc/apt/sources.list.d/github-cli.list ]
 then
   curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
