@@ -38,6 +38,7 @@ sudo usermod -aG docker "$USER"
 
 if [[ ! -f ~/.docker/config.json ]]; then
   sudo mkdir -p ~/.docker
+  sudo chown -R $USER:$USER ~/.docker
   echo '{}' | sudo tee ~/.docker/config.json >/dev/null
 fi
 sudo jq -s add ~/.docker/config.json "$PWD/docker/config.json"
