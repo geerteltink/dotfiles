@@ -12,10 +12,10 @@ if [ ! -f /etc/apt/sources.list.d/ondrej*.list ]; then
     sudo add-apt-repository -yu ppa:ondrej/php
 fi
 
-if [ ! -f /usr/bin/php8.2 ]
+if [ ! -f /usr/bin/php8.3 ]
 then
-    sudo apt -y install php8.2-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis,sqlite3}
-    sudo update-alternatives --set php /usr/bin/php8.2
+    sudo apt -y install php8.3-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis,sqlite3}
+    sudo update-alternatives --set php /usr/bin/php8.3
 fi
 
 if [ ! "$(which composer)" ]; then
