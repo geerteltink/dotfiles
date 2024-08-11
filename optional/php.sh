@@ -14,7 +14,7 @@ fi
 
 if [ ! -f /usr/bin/php8.3 ]
 then
-    sudo apt -y install php8.3-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis,sqlite3}
+    sudo apt -y install php8.3-{common,cli,bcmath,curl,gd,intl,mbstring,xml,mysql,ldap,redis,sqlite3,amqp}
     sudo update-alternatives --set php /usr/bin/php8.3
 fi
 
