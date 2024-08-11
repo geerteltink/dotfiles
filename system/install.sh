@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 set -Eueo pipefail
 
+# Add wslu to open the default browser from cli
+if [ ! -f /etc/apt/sources.list.d/wslutilities* ]; then
+    sudo add-apt-repository -yu ppa:wslutilities/wslu
+fi
+
 PACKAGES=(
   systemd-timesyncd
+  wslu
 )
 
 for pkg in "${PACKAGES[@]}"; do
