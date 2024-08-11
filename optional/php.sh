@@ -8,7 +8,7 @@
 #
 set -Eueo pipefail
 
-if [ ! -f /etc/apt/sources.list.d/ondrej*.list ]; then
+if [ ! -f /etc/apt/sources.list.d/ondrej* ]; then
     sudo add-apt-repository -yu ppa:ondrej/php
 fi
 
