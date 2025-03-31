@@ -1,13 +1,13 @@
-alias ls='ls --human-readable --group-directories-first --color=auto -I NTUSER.DAT\* -I ntuser.dat\* -I ntuser.ini -I Cookies -I NetHood -I PrintHood -I Recent -I SendTo -I Templates -I Application\ Data -I Local\ Settings -I Start\ Menu -I My\ Documents'
+alias ls="ls -lash --color=auto"
 
-# List all files in long format
-alias l="ls -lF"
+# List all files in long format, directories first
+alias l='ls -lF | grep "/" && ls -lap | grep -v "/"'
 
 # List all files in long format, excluding . and ..
 alias ll="ls -lAF"
 
 # List only directories
-alias ld="ls -lF | grep --color=never '^d'"
+alias ld="ls -lap | grep '/'"
 
 alias ..='cd ..'
 alias wh='cd /mnt/c/Users/$USER'
