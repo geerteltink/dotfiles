@@ -29,8 +29,11 @@ set output-meta on
 set convert-meta off
 
 # Flip through autocompletion matches with Shift-Tab.
-bind '"\e[Z": menu-complete-backward'
+# macos: bind '"\e[Z": menu-complete-backward'
+"\e[Z": menu-complete
 
 # Filtered history search using arrow keys up/down
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
+# macos: bind '"\e[A": history-search-backward'
+# macos: bind '"\e[B": history-search-forward'
+"\e[A": history-search-backward
+"\e[B": history-search-forward
