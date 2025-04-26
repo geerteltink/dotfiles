@@ -35,6 +35,7 @@ git config --global core.autocrlf "input"
 git config --global core.eol "lf"
 git config --global core.excludesfile "~/.gitignore"
 git config --global core.fscache true
+git config --global core.editor "nano"
 git config --global init.defaultBranch "main"
 git config --global format.commitMessageColumns 100
 git config --global fetch.prune true

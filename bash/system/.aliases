@@ -1,16 +1,12 @@
-# macos: alias ls="ls -lash --color=auto"
-alias ls="ls -lash --group-directories-first --color=auto"
-
-# List all files in long format, directories first
-# macos: alias l='ls -lF | grep "/" && ls -lap | grep -v "/"'
-alias l="ls -lF"
-
-# List all files in long format, excluding . and ..
-alias ll="ls -lAF"
+alias ls="ls --color --group-directories-first"
+alias l="ls -lFh"
+alias ll="ls -lAsh -I '.*'"
+alias la="ls -lAsh"
 
 # List only directories
-alias ld="ls -lap | grep '/'"
+alias ld="ls -lAp | grep '/'"
 
+alias ~='cd ~'
 alias ..='cd ..'
 alias wh='cd /mnt/c/Users/$USER'
 

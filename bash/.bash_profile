@@ -4,6 +4,18 @@ export PATH="$HOME/bin:$HOME/.dotfiles/bin:$PATH";
 # Go
 [ -d "/usr/local/go/bin" ] && export PATH=$PATH:/usr/local/go/bin
 
+# Bun
+if [ -d "$HOME/.bun" ]; then
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
+# sdkman
+if [ -d "$HOME/.sdkman" ]; then
+  export SDKMAN_DIR="$HOME/.sdkman"
+  [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
+
 # Rust
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
