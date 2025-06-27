@@ -41,12 +41,16 @@ if [[ ! -f ~/.docker/config.json ]]; then
   sudo chown -R $USER:$USER ~/.docker
   echo '{}' | sudo tee ~/.docker/config.json >/dev/null
 fi
-sudo jq -s add ~/.docker/config.json "$PWD/optional/docker-config.json"
+sudo rm ~/.docker/config.json.tmp 2>/dev/null || true
+sudo jq -s add ~/.docker/config.json "$PWD/optional/docker-config.json" > ~/.docker/config.json.tmp
+sudo mv ~/.docker/config.json.tmp ~/.docker/config.json
 
 if [[ ! -f /etc/docker/daemon.json ]]; then
   sudo mkdir -p /etc/docker
   echo '{}' | sudo tee /etc/docker/daemon.json >/dev/null
 fi
-sudo jq -s add /etc/docker/daemon.json "$PWD/optional/docker-daemon.json"
+sudo rm /etc/docker/daemon.json.tmp 2>/dev/null || true
+sudo jq -s add /etc/docker/daemon.json "$PWD/optional/docker-daemon.json" > ~/.docker/daemon.json.tmp
+sudo mv ~/.docker/daemon.json.tmp /etc/docker/daemon.json
 
 exit 0
