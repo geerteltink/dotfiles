@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -Eueo pipefail
 
-NODE_MAJOR=20
+NODE_MAJOR=22
 
 if [ ! -f /etc/apt/sources.list.d/node*.list ]
 then
