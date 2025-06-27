@@ -3,6 +3,8 @@ set -Eueo pipefail
 
 [ -d ~/.ssh ] || mkdir ~/.ssh
 
+sudo chown -R $USER:$USER ~/.ssh
+sudo chown -R $USER:$USER ~/.ssh/*
 sudo chmod 700 -R ~/.ssh
 sudo chmod 600 ~/.ssh/*
 
